@@ -604,7 +604,32 @@ double PlaneVolume::dist(GLVertex& p) const {
         return -1;
     }
 }
-*/
+
+//************* Rect *******************/
+
+RectOCTVolume::RectOCTVolume()
+{
+    corner = GLVertex(0,0,0); 
+    v1 = GLVertex(1,0,0); 
+    v2 = GLVertex(0,1,0);
+    v3 = GLVertex(0,0,1);
+}
+
+void RectOCTVolume::calcBB() {
+    bb.clear();
+    GLVertex maxp;
+    GLVertex minp;
+    double bignum = 1e6;
+    maxp = GLVertex(bignum,bignum,bignum);
+    minp = GLVertex( -bignum,-bignum,-bignum);
+    bb.addPoint( maxp  );
+    bb.addPoint( minp );
+}
+
+bool RectOCTVolume::isInside(GLVertex& p) const
+{
+    return (dist(p) <= 0.0);   
+}
 
 } // end namespace
 // end of file volume.cpp

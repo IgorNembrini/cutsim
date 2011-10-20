@@ -47,6 +47,7 @@ int main( int argc, char **argv ) {
 
     cs->updateGL();
 
+
     std::cout << " w->show() done.\n";
     return app.exec();
 }
